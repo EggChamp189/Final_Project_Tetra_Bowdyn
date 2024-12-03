@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// use the better version of these two functions if you don't want to encode numbers too lfmao
 string EncodeVigenere(string key, string wordToEncode) {
 	string encodedMessage = "";
 	int keyIndex = 0;
@@ -30,13 +31,15 @@ string EncodeVigenere(string key, string wordToEncode) {
 		// character then gets converted back into the full ascii index via the alphabet string
 		char encryptedCharacter = alphabet[encryptedIndex];
 		// return the character in the correct case (Doesn't work just return upper)
-		encodedMessage += toupper(encryptedCharacter);
-		/*if (isLower) {
+		//encodedMessage += encryptedCharacter;
+		if (isLower) {
 			encodedMessage += encryptedCharacter;
 		}
+		// it is minus if it is lowercase
 		else {
+			encodedMessage += '-';
 			encodedMessage += tolower(encryptedCharacter);
-		}*/
+		}
 		keyIndex++;
 	}
 
@@ -50,21 +53,22 @@ string EncodeVigenere(string key, string wordToEncode) {
 string DecodeVigenere(string key, string wordToDecode) {
 	string decodedMessage = "";
 	int keyIndex = 0;
+	bool nextCharLower = false;
 
 	for (int i = 0; i < wordToDecode.length(); i++) {
 		char cipherChar = wordToDecode[i];
 
+		if (cipherChar == '-' && !nextCharLower) {
+			nextCharLower = true;
+			continue;
+		}
 		// check if the character is not in the given alphabet, and if so just add the character as is then skip to the next loop.
 		if (!CheckAlphabet(cipherChar)) {
 			decodedMessage += cipherChar;
 			continue;
 		}
-		bool isLower = false;
-		// check if the character is a lowercase form before calculations are done
-		// shouldn't matter if a non caseable thing goes into this, the toupper shouldn't brake the code
-		if (cipherChar == toupper(cipherChar)) {
-			isLower = true;
-		}
+
+
 		// set up variables so the given characters are only being dealt with in the same case
 		// also, make CERTAIN that only UPPERCASE character are fed to the return alphabet number function
 		int keyCharacter = ReturnAlphabetNumber(key[keyIndex % key.length()]);
@@ -76,12 +80,67 @@ string DecodeVigenere(string key, string wordToDecode) {
 		// character then gets converted back into the full ascii index via the alphabet string
 		char decryptedCharacter = alphabet[decryptedIndex];
 		// return the character in the correct case (DOESN'T WORK, JUST RETURN UPPERCASE INSTEAD)
-		decodedMessage += toupper(decryptedCharacter);
-		/*if (isLower) {
+		//decodedMessage += decryptedCharacter;
+		if (!nextCharLower) {
+			decodedMessage += decryptedCharacter;
 		}
 		else {
 			decodedMessage += tolower(decryptedCharacter);
-		}*/
+		}
+		keyIndex++;
+		nextCharLower = false;
+	}
+
+	return decodedMessage;
+}
+
+string RegularEncodeVigenere(string key, string wordToEncode) {
+	string encodedMessage = "";
+	int keyIndex = 0;
+	for (int i = 0; i < wordToEncode.length(); i++) {
+		char cipherChar = wordToEncode[i];
+
+		if (!isalpha(cipherChar)) {
+			encodedMessage += cipherChar;
+			continue;
+		}
+		bool isLower = false;
+		if (cipherChar != toupper(cipherChar)) {
+			isLower = true;
+		}
+		int keyCharacter = key[keyIndex % key.length()];
+		int cipherSpecialAlphabet = toupper(cipherChar);
+		int encryptedIndex =
+			(cipherSpecialAlphabet + keyCharacter) % 26 + 'A';
+		char encryptedCharacter = encryptedIndex;
+		encodedMessage += (isLower) ? tolower(encryptedCharacter) : encryptedCharacter;
+		keyIndex++;
+	}
+
+	return encodedMessage;
+}
+
+string RegularDecodeVigenere(string key, string wordToDecode) {
+	string decodedMessage = "";
+	int keyIndex = 0;
+
+	for (int i = 0; i < wordToDecode.length(); i++) {
+		char cipherChar = wordToDecode[i];
+
+		if (!isalpha(cipherChar)) {
+			decodedMessage += cipherChar;
+			continue;
+		}
+		bool isLower = false;
+		if (cipherChar != toupper(cipherChar)) {
+			isLower = true;
+		}
+		int keyCharacter = key[keyIndex % key.length()];
+		int cipherSpecialAlphabet = toupper(cipherChar);
+		int decryptedIndex =
+			(cipherSpecialAlphabet - keyCharacter + 26) % 26 + 'A';
+		char decryptedCharacter = decryptedIndex;
+		decodedMessage += (isLower) ? tolower(decryptedCharacter) : decryptedCharacter;
 		keyIndex++;
 	}
 
