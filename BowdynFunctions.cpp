@@ -26,15 +26,15 @@ string decryptCaesar(string encryption, int shift)
     return decryptedText; //did I ever tell you how much I want to sleep in the middle of a very public place???????????
 }
 
-///////// RETRIEVE ENCRYPTION //////////
+///////// RETRIEVE DECRYPTION //////////
 
-int RetrieveEncryption()
+int retrieveCaesarDecryption()
 {
     string encryption;
     int shift;
 
     cout << "Enter the encryption: ";
-    getline(cin, encryption);
+    cin >> encryption;
     cout << "Enter the shift value: ";
     cin >> shift;
 
@@ -45,5 +45,43 @@ int RetrieveEncryption()
     return 0;
 }
 
+////// ENCRYPT CAESAR //////////
 
+string encryptCaesar(string decryption, int shift)
+{
+    string encryptedText = "";
 
+    for (char& c : decryption)
+    {
+        if (isalpha(c))
+        {
+            // Determine if the character is upper or lower case
+            char base = islower(c) ? 'a' : 'A';
+            // Decrypt the character by shifting in the opposite direction
+            c = (c - shift - base + 26) % 26 + base;
+        }
+
+        encryptedText += c;
+    }
+
+    return encryptedText; //did I ever tell you how much I want to sleep in the middle of a very public place???????????
+}
+
+///////// RETRIEVE ENCRYPTION //////////
+
+int retrieveCaesarEncryption()
+{
+    string decryption;
+    int shift;
+
+    cout << "Enter the decryption: ";
+    cin >> decryption;
+    cout << "Enter the shift value: ";
+    cin >> shift;
+
+    string encryptedText = decryptCaesar(decryption, shift);
+
+    cout << "encrypted text: " << encryptedText << endl;
+
+    return 0;
+}
