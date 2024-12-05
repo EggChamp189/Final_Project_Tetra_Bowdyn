@@ -28,13 +28,15 @@ string decryptCaesar(string encryption, int shift)
 
 ///////// RETRIEVE DECRYPTION //////////
 
-int retrieveCaesarDecryption()
+string retrieveCaesarDecryption()
 {
     string encryption;
     int shift;
+    cin.ignore();
 
     cout << "Enter the encryption: ";
-    cin >> encryption;
+    getline(cin, encryption);
+    cin.ignore();
     cout << "Enter the shift value: ";
     cin >> shift;
 
@@ -42,7 +44,7 @@ int retrieveCaesarDecryption()
 
     cout << "Decrypted text: " << decryptedText << endl;
 
-    return 0;
+    return decryptedText;
 }
 
 ////// ENCRYPT CAESAR //////////
@@ -69,13 +71,14 @@ string encryptCaesar(string decryption, int shift)
 
 ///////// RETRIEVE ENCRYPTION //////////
 
-int retrieveCaesarEncryption()
+string retrieveCaesarEncryption()
 {
     string decryption;
     int shift;
-
+    cin.ignore();
     cout << "Enter the decryption: ";
-    cin >> decryption;
+    getline(cin, decryption);
+    cin.ignore();
     cout << "Enter the shift value: ";
     cin >> shift;
 
@@ -83,5 +86,5 @@ int retrieveCaesarEncryption()
 
     cout << "encrypted text: " << encryptedText << endl;
 
-    return 0;
+    return encryptedText;
 }

@@ -1,7 +1,7 @@
 #include "TetraFunctions.h"
 #include "BowdynFunctions.h"
 #include <cstdlib>
-
+#include <fstream>
 /* use this to test my code, while also changing the alphabet in my header file
 string text = "I'm literally going to go joe biden mode deluxe edition!!!!1901910"; wooooooooo tetra
 string encodedText = EncodeVigenere("KEY", text);
@@ -9,9 +9,10 @@ string decodedText = DecodeVigenere("KEY", encodedText);
 cout << "The original text was: " << text << endl;
 cout << "The decoded version of " << encodedText << " is:\n" << decodedText << endl;*/
 
+void menu();
+
 int main()
 {
-	int choice;
 	cout << "Welcome to Tetra and Bowdyns' Cipher Program!" << endl;
 	//lol do thingz hereeeee VVVVVVVV
 	menu();
@@ -22,24 +23,26 @@ void menu() {
 	int intInput;
 	string stringInput;
 	string tempString;
-	string result;
+	string result = "";
+	ifstream ifile;
 
 	while (true)
 	{
-		
 		cout << "(1). Encrypt in the Caesar Cipher\n" <<
 			"(2). Decrypt in the Caesar Cipher\n" <<
 			"(3). Encrypt in the Vigenere Cipher\n" <<
 			"(4). Decrypt in the Vigenere Cipher\n" <<
-			"(5). Exits the program\n";
+			"(5). Read out results.txt\n" <<
+			"(6). Clear results.txt\n" <<
+			"(7). Exits the program\n";
 		cout << "Please enter the function you would like to use: ";
 		cin >> intInput;
 		switch (intInput) {
 		case 1:
-			retrieveCaesarEncryption();
+			result = retrieveCaesarEncryption();
 			break;
 		case 2:
-			retrieveCaesarDecryption();
+			result = retrieveCaesarDecryption();
 			break;
 		case 3:
 			cout << "Please enter the key for the Vigenere Cipher (no special characters): ";
@@ -64,19 +67,38 @@ void menu() {
 			cout << result;
 			break;
 		case 5:
+			ifile.open("results.txt");
+			while (!ifile.eof()) {
+				string thing;
+				ifile >> thing;
+				cout << thing;
+			}
+			ifile.close();
+			cout << "\nCompleted.";
+			continue;
+		case 6:
+			intInput = remove("results.txt");
+			if (intInput != 0) {
+				cout << "File already cleared.";
+			}
+			else {
+				cout << "File successfully cleared.";
+			}
+			continue;
+		case 7:
 			cout << "Thank you for using our Cipher program! Goodbye!" << endl;
 			return;
-			break;
 
 		default:
 			continue;
 		}
+		cout << "Saving Result to results.txt...\n";
+		ofstream file;
+		// append to the end of the file 
+		file.open("results.txt", ios_base::app);
+		file << result << endl;
+		file.close();
+		cout << "Saved.";
 		cout << "\n\n\n";
 	}
-}
-
-int main()
-{
-	//lol do thingz hereeeee VVVVVVVV
-	menu();
 }
