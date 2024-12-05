@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BowdynFunctions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TetraFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BowdynFunctions.h" />
     <ClInclude Include="TetraFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
