@@ -54,3 +54,11 @@ string RegularDecodeVigenere(string key, string wordToDecode) {
 
 	return decodedMessage;
 }
+
+string UppercasedString(string toUppercase) {
+	string finalWord = "";
+	for (int i = 0; i < toUppercase.length(); i++) {
+		finalWord += toupper(toUppercase[i]);
+	}
+	return finalWord;
+}

@@ -9,13 +9,20 @@ string decodedText = DecodeVigenere("KEY", encodedText);
 cout << "The original text was: " << text << endl;
 cout << "The decoded version of " << encodedText << " is:\n" << decodedText << endl;*/
 
-
-//////////// MENU SYSTEM /////////////////////////
-
-void menu()
+int main()
 {
 	int choice;
 	cout << "Welcome to Tetra and Bowdyns' Cipher Program!" << endl;
+	//lol do thingz hereeeee VVVVVVVV
+	menu();
+	//RetrieveEncryption();
+}
+
+void menu() {
+	int intInput;
+	string stringInput;
+	string tempString;
+	string result;
 
 	while (true)
 	{
@@ -26,10 +33,8 @@ void menu()
 			"(4). Decrypt in the Vigenere Cipher\n" <<
 			"(5). Exits the program\n";
 		cout << "Please enter the function you would like to use: ";
-		cin >> choice;
-
-		switch (choice)
-		{
+		cin >> intInput;
+		switch (intInput) {
 		case 1:
 			retrieveCaesarEncryption();
 			break;
@@ -37,10 +42,26 @@ void menu()
 			retrieveCaesarDecryption();
 			break;
 		case 3:
-
+			cout << "Please enter the key for the Vigenere Cipher (no special characters): ";
+			cin >> stringInput;
+			cin.ignore();
+			cout << "Please enter the word to encrypt (no spaces): ";
+			getline(cin, tempString);
+			cin.ignore();
+			cout << "The encrypted version of \"" << tempString << "\" with the key \"" << UppercasedString(stringInput) << "\" is:\n";
+			result = RegularEncodeVigenere(UppercasedString(stringInput), tempString);
+			cout << result;
 			break;
 		case 4:
-
+			cout << "Please enter the key for the Vigenere Cipher (no special characters): ";
+			cin >> stringInput;
+			cin.ignore();
+			cout << "Please enter the word to decrypt (no spaces): ";
+			getline(cin, tempString);
+			cin.ignore();
+			cout << "The decrypted version of \"" << tempString << "\" with the key \"" << UppercasedString(stringInput) << "\" is:\n";
+			result = RegularDecodeVigenere(UppercasedString(stringInput), tempString);
+			cout << result;
 			break;
 		case 5:
 			cout << "Thank you for using our Cipher program! Goodbye!" << endl;
