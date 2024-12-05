@@ -80,7 +80,6 @@ string retrieveCaesarEncryption()
     int shift;
     cin.ignore();
     cout << "Enter the word to en or decrypt: ";
-    cout << "Enter the decryption: ";
     getline(cin, decryption);
     cin.ignore();
     cout << "Enter the shift value: ";
