@@ -9,6 +9,9 @@ string decodedText = DecodeVigenere("KEY", encodedText);
 cout << "The original text was: " << text << endl;
 cout << "The decoded version of " << encodedText << " is:\n" << decodedText << endl;*/
 
+
+//////////// MENU SYSTEM /////////////////////////
+
 void menu()
 {
 	int choice;
