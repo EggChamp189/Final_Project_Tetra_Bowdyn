@@ -7,4 +7,7 @@ using namespace std;
 /////// FUNCTION PROTOTYPES /////////////////
 
 string decryptCaesar(string encryption, int shift);
-int RetrieveEncryption();
+int retrieveCaesarDecryption();
+
+string encryptCaesar(string decryption, int shift);
+int retrieveCaesarEncryption();
