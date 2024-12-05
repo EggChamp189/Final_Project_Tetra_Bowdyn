@@ -28,6 +28,15 @@ void menu() {
 
 	while (true)
 	{
+<<<<<<< HEAD
+		cout << "\n\n\n";
+		cout << "(1). Encrypt/Decrypt in the Caesar Cipher\n" <<
+			"(2). Encrypt in the Vigenere Cipher\n" <<
+			"(3). Decrypt in the Vigenere Cipher\n" <<
+			"(4). Read out results.txt\n" <<
+			"(5). Clear results.txt\n" <<
+			"(6). Exits the program\n";
+=======
 		cout << "(1). Encrypt in the Caesar Cipher\n" <<
 			"(2). Decrypt in the Caesar Cipher\n" <<
 			"(3). Encrypt in the Vigenere Cipher\n" <<
@@ -35,6 +44,7 @@ void menu() {
 			"(5). Read out results.txt\n" <<
 			"(6). Clear results.txt\n" <<
 			"(7). Exits the program\n";
+>>>>>>> origin/master
 		cout << "Please enter the function you would like to use: ";
 		cin >> intInput;
 		switch (intInput) {
@@ -42,9 +52,12 @@ void menu() {
 			result = retrieveCaesarEncryption();
 			break;
 		case 2:
+<<<<<<< HEAD
+=======
 			result = retrieveCaesarDecryption();
 			break;
 		case 3:
+>>>>>>> origin/master
 			cout << "Please enter the key for the Vigenere Cipher (no special characters): ";
 			cin >> stringInput;
 			cin.ignore();
@@ -55,7 +68,7 @@ void menu() {
 			result = RegularEncodeVigenere(UppercasedString(stringInput), tempString);
 			cout << result;
 			break;
-		case 4:
+		case 3:
 			cout << "Please enter the key for the Vigenere Cipher (no special characters): ";
 			cin >> stringInput;
 			cin.ignore();
@@ -66,7 +79,19 @@ void menu() {
 			result = RegularDecodeVigenere(UppercasedString(stringInput), tempString);
 			cout << result;
 			break;
+		case 4:
+			ifile.open("results.txt");
+			while (!ifile.eof()) {
+				string thing;
+				ifile >> thing;
+				cout << thing << endl;
+			}
+			ifile.close();
+			cout << "\nCompleted.";
+			continue;
 		case 5:
+<<<<<<< HEAD
+=======
 			ifile.open("results.txt");
 			while (!ifile.eof()) {
 				string thing;
@@ -77,6 +102,7 @@ void menu() {
 			cout << "\nCompleted.";
 			continue;
 		case 6:
+>>>>>>> origin/master
 			intInput = remove("results.txt");
 			if (intInput != 0) {
 				cout << "File already cleared.";
@@ -85,7 +111,11 @@ void menu() {
 				cout << "File successfully cleared.";
 			}
 			continue;
+<<<<<<< HEAD
+		case 6:
+=======
 		case 7:
+>>>>>>> origin/master
 			cout << "Thank you for using our Cipher program! Goodbye!" << endl;
 			return;
 
@@ -99,6 +129,9 @@ void menu() {
 		file << result << endl;
 		file.close();
 		cout << "Saved.";
+<<<<<<< HEAD
+=======
 		cout << "\n\n\n";
+>>>>>>> origin/master
 	}
 }

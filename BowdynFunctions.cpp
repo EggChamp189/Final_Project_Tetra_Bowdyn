@@ -28,7 +28,10 @@ string decryptCaesar(string encryption, int shift)
 
 ///////// RETRIEVE DECRYPTION //////////
 
+/*string retrieveCaesarDecryption()
+=======
 string retrieveCaesarDecryption()
+>>>>>>> origin/master
 {
     string encryption;
     int shift;
@@ -67,7 +70,7 @@ string encryptCaesar(string decryption, int shift)
     }
 
     return encryptedText; //did I ever tell you how much I want to sleep in the middle of a very public place???????????
-}
+}*/
 
 ///////// RETRIEVE ENCRYPTION //////////
 
@@ -76,6 +79,7 @@ string retrieveCaesarEncryption()
     string decryption;
     int shift;
     cin.ignore();
+    cout << "Enter the word to en or decrypt: ";
     cout << "Enter the decryption: ";
     getline(cin, decryption);
     cin.ignore();
